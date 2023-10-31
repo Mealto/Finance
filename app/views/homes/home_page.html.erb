@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      margin: 0;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .custom-button {
+      margin: 5px;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .company-name {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .info-section {
+      margin-top: 50px;
+      text-align: center;
+    }
+    .round-button {
+      border-radius: 20px;
+      background-color: orange;
+      color: white;
+      width: 150px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body class="m-3">
+  <div class="company-name">
+    RFinance
+  </div>
+
+  <div class="info-section">
+    <h1>Welcome to RFinance</h1>
+    <p>RFinance provides comprehensive financial solutions to meet your needs. Whether you are an individual or a business, we offer a range of services to help you achieve your financial goals.</p>
+    <p>Our team of experienced professionals is dedicated to providing expert guidance and support for all your financial endeavors.</p>
+    <p>Explore our services and take control of your financial future with RFinance.</p>
+  </div>
+
+  <button onclick="addButtons()" class="btn btn-primary round-button">Click me</button>
+
+  <script>
+    var areButtonsVisible = <%= @buttons_visible || 'false' %>;
+    var paths = [
+      '<%= root_path(1) %>',
+      '<%= root_path(2) %>',
+      '<%= root_path(3) %>'
+    ];
+
+    function addButtons() {
+      if (areButtonsVisible) {
+        hideButtons();
+        areButtonsVisible = false;
+      } else {
+        for (let i = 1; i <= 3; i++) {
+          var button = document.createElement("button");
+          button.innerHTML = "Button " + i;
+          button.classList.add("btn", "btn-primary", "custom-button");
+          button.id = "button" + i;
+          document.body.appendChild(button);
+
+          var link = document.createElement("a");
+          link.innerHTML = "Controller Action " + i;
+          link.href = paths[i - 1];
+          link.classList.add("btn", "btn-primary", "custom-button");
+          link.id = "link" + i;
+          document.body.appendChild(link);
+        }
+        areButtonsVisible = true;
+      }
+    }
+
+    function hideButtons() {
+      for (let i = 1; i <= 3; i++) {
+        var button = document.getElementById('button' + i);
+        if (button) {
+          button.parentNode.removeChild(button);
+        }
+        var link = document.getElementById('link' + i);
+        if (link) {
+          link.parentNode.removeChild(link);
+        }
+      }
+    }
+  </script>
+  <a href="<%= contact_us_new_path %>" class="schedule-call-btn">
+    <i class="fas fa-calendar-alt"></i>Schedule a Call
+  </a>
+
+</body>
+</html>

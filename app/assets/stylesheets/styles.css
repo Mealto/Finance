@@ -1,0 +1,51 @@
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.form-container {
+  width: 30%;
+  background-color: rosybrown;
+  padding: 20px;
+  border-radius: 10px;
+}
+.form-container label, .form-container input, .form-container textarea, .form-container button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.form-container button {
+  width: auto;
+}
+.company-name {
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.schedule-call-btn i {
+  margin-right: 10px;
+}
+
+.schedule-call-btn:hover {
+  background-color: #4169E1;
+}
+.schedule-call-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #1E90FF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
