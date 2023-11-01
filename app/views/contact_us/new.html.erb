@@ -4,9 +4,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="company-name">
-    RFinance
-  </div>
+<%= render 'shared/header' %>
   <div class="form-container">
     <%= form_tag(contact_us_path, method: "post") do %>
       <div class="form-group">
