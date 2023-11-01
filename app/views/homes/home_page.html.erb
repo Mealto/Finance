@@ -7,8 +7,8 @@
     body {
       background-color: black;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
       height: 100vh;
       margin: 0;
       color: white;
@@ -23,32 +23,103 @@
       align-items: center;
       margin-top: 20px;
     }
-    .company-name {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 24px;
-      font-weight: bold;
-    }
     .info-section {
       margin-top: 50px;
       text-align: center;
     }
     .round-button {
-      border-radius: 20px;
-      background-color: orange;
-      color: white;
-      width: 150px;
+      border-radius: 50px;
+      background-color: #ff530d;
+      color: #fff;
+      width: 96px;
       height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: 14px;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      border: 2px solid;
+      border-radius: 20px;
+      position: fixed;
+      width: 100%; 
+      top: 0;
+    } 
+    .contact_us {
+      background: #ff530d;
+      border-radius: 20px;
+      width: 96px;
+      text-align: center;  
+      border: 1px;
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      padding: 20px;
+      text-decoration: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .hover-effect:hover {
+      color: #ff530d;
+    }
+    .body{
+      background-color: black;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      border: 2px;
+      border-radius: 20px;
+      padding: 8px 4px;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 8px 16px;
+      margin: 5px 0;    
+      color: black; 
+      border-radius: 5px;
+    }
+    a{
+      text-decoration: none;
     }
   </style>
 </head>
-<body class="m-3">
-  <div class="company-name">
-    RFinance
+<body>
+  <div class="header">
+    <div class="company-name">RFinance
+    </div>
+    <div class="center">
+      <a href="#" class="hover-effect">About</a>
+      <div class="dropdown">
+        <a href="#" class="hover-effect">Services</a>
+        <div class="dropdown-content">
+          <a href="#" class="hover-effect">Application Development</a>
+          <a href="#" class="hover-effect">Cloud Services</a>
+          <a href="#" class="hover-effect">Blockchain Development</a>
+          <a href="#" class="hover-effect">IT Services</a>
+        </div>
+      </div>
+      <a href="#" class="hover-effect">Industries</a>
+      <a href="#" class="hover-effect">Case Studies</a>
+      <a href="#" class="hover-effect">Resources</a>
+    </div>
   </div>
 
   <div class="info-section">
@@ -58,52 +129,6 @@
     <p>Explore our services and take control of your financial future with RFinance.</p>
   </div>
 
-  <button onclick="addButtons()" class="btn btn-primary round-button">Click me</button>
-
-  <script>
-    var areButtonsVisible = <%= @buttons_visible || 'false' %>;
-    var paths = [
-      '<%= root_path(1) %>',
-      '<%= root_path(2) %>',
-      '<%= root_path(3) %>'
-    ];
-
-    function addButtons() {
-      if (areButtonsVisible) {
-        hideButtons();
-        areButtonsVisible = false;
-      } else {
-        for (let i = 1; i <= 3; i++) {
-          var button = document.createElement("button");
-          button.innerHTML = "Button " + i;
-          button.classList.add("btn", "btn-primary", "custom-button");
-          button.id = "button" + i;
-          document.body.appendChild(button);
-
-          var link = document.createElement("a");
-          link.innerHTML = "Controller Action " + i;
-          link.href = paths[i - 1];
-          link.classList.add("btn", "btn-primary", "custom-button");
-          link.id = "link" + i;
-          document.body.appendChild(link);
-        }
-        areButtonsVisible = true;
-      }
-    }
-
-    function hideButtons() {
-      for (let i = 1; i <= 3; i++) {
-        var button = document.getElementById('button' + i);
-        if (button) {
-          button.parentNode.removeChild(button);
-        }
-        var link = document.getElementById('link' + i);
-        if (link) {
-          link.parentNode.removeChild(link);
-        }
-      }
-    }
-  </script>
   <a href="<%= contact_us_new_path %>" class="schedule-call-btn">
     <i class="fas fa-calendar-alt"></i>Schedule a Call
   </a>
